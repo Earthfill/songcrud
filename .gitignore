@@ -1,0 +1,4 @@
+# created by virtualenv automatically
+zuri
+songcrud/.env
+songcrud/db.sqlite3
