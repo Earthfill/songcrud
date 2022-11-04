@@ -19,7 +19,7 @@ class Song(models.Model):
         return self.title
 
 class Lyric(models.Model):
-    content =models.CharField(max_length=400)
+    content =models.CharField(max_length=1500)
     song_id =models.ForeignKey(Song, on_delete=models.CASCADE)
 
     def _str_(self):
