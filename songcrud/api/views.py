@@ -28,7 +28,7 @@ def song_list_api(request):
         songs = Song.objects.all()
         serializer = SongSerializer(songs, many=True)
         print(serializer.data)
-        return Response(serializer.data, safe=False)
+        return Response(serializer.data)
     if request.method == "POST":
         serializer = SongSerializer(data=request.data)
         if serializer.is_valid():
@@ -37,7 +37,7 @@ def song_list_api(request):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
-def song_detail_api(request, api):
+def song_detail_api(request, id):
     try:
         song = Song.objects.get(id=id)
     except Song.DoesNotExist:
@@ -45,7 +45,7 @@ def song_detail_api(request, api):
     if request.method == "GET":
         serializer = SongSerializer(song)
         print(serializer.data)
-        return Response(serializer.data, safe=HTTP_200_OK)
+        return Response(serializer.data)
     if request.method == "POST":
         serializer = SongSerializer(data=request.data)
         if serializer.is_valid():
